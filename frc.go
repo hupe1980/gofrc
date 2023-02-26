@@ -116,13 +116,12 @@ func (frc *FRC) SolvePuzzle(puzzle *Puzzle) string {
 		}
 	}()
 
-	threshold := puzzle.Threshold
 	wg := new(sync.WaitGroup)
 
 	for i := 0; i < puzzle.N; i++ {
 		wg.Add(1)
 
-		go frc.worker(puzzle.Buffer, threshold, i, resultChan, wg)
+		go frc.worker(puzzle.Buffer, puzzle.Threshold, i, resultChan, wg)
 	}
 
 	wg.Wait()

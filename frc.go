@@ -150,14 +150,17 @@ func (frc *FRC) worker(input []byte, threshold uint32, puzzleIndex int, resultCh
 		go func() {
 			defer swg.Done()
 
-			var hash [32]byte
+			var (
+				hash [32]byte
+				r    uint32
+			)
 
 			for {
 				select {
 				case <-ctx.Done():
 					return
 				default:
-					r := RandomUint32()
+					r = RandomUint32()
 					//binary.LittleEndian.PutUint32(input[124:], i)
 					random[124] = byte(r)
 					random[125] = byte(r >> 8)

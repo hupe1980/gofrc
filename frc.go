@@ -21,7 +21,6 @@ type HTTPDoFunc func(req *http.Request) (*http.Response, error)
 type Options struct {
 	HTTPDoFunc    HTTPDoFunc
 	XFRCClient    string
-	ExtraHeaders  map[string]string
 	Endpoint      string
 	SolverThreats int
 }
